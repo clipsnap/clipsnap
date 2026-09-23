@@ -21,34 +21,11 @@ def instagram_page():
 def twitter_page():
     return render_template('twitter.html')
 
-def extract_yt_id(url):
-    pattern = r'(?:v=|\/shorts\/|youtu\.be\/)([a-zA-Z0-9_-]{11})'
-    match = re.search(pattern, url)
-    return match.group(1) if match else None
-
-def get_youtube_video(video_id):
-    instances = [
-        'https://inv.nadeko.net',
-        'https://invidious.nerdvpn.de',
-        'https://invidious.jing.rocks',
-        'https://yt.drgnz.club'
-    ]
-    for base in instances:
-        try:
-            res = requests.get(f"{base}/api/v1/videos/{video_id}", timeout=6)
-            if res.status_code == 200:
-                data = res.json()
-                formats = data.get('formatStreams', [])
-                if formats:
-                    stream = formats[-1]
-                    return {
-                        'title': data.get('title', 'YouTube Video'),
-                        'download_url': stream.get('url'),
-                        'thumbnail': f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
-                    }
-        except Exception:
-            continue
-    return None
+def sanitize_url(url):
+    m = re.search(r'(?:v=|\/shorts\/|youtu\.be\/)([a-zA-Z0-9_-]{11})', url)
+    if m:
+        return f"https://www.youtube.com/watch?v={m.group(1)}"
+    return url
 
 @app.route('/get-video', methods=['POST'])
 def get_video():
@@ -57,23 +34,22 @@ def get_video():
     if not url:
         return jsonify({'error': 'Please provide a valid URL.'}), 400
 
-    if 'youtube.com' in url or 'youtu.be' in url:
-        vid = extract_yt_id(url)
-        if vid:
-            yt_res = get_youtube_video(vid)
-            if yt_res:
-                return jsonify(yt_res)
-        return jsonify({'error': 'YouTube servers temporarily busy. Please retry.'}), 503
+    clean_url = sanitize_url(url)
 
     ydl_opts = {
         'format': 'best[ext=mp4]/best',
         'quiet': True,
         'no_warnings': True,
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'web_embedded']
+            }
+        }
     }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
+            info = ydl.extract_info(clean_url, download=False)
             video_url = None
             if 'formats' in info:
                 for f in reversed(info['formats']):
@@ -84,7 +60,7 @@ def get_video():
                 video_url = info.get('url')
 
             return jsonify({
-                'title': info.get('title', 'Social Video'),
+                'title': info.get('title', 'Video Download'),
                 'download_url': video_url,
                 'thumbnail': info.get('thumbnail', '')
             })
@@ -98,7 +74,7 @@ def download_file():
     if not video_url:
         return "Missing URL", 400
 
-    headers = {'User-Agent': 'Mozilla/5.0'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
     try:
         req = requests.get(video_url, headers=headers, stream=True, timeout=30)
         return Response(
