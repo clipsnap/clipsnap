@@ -448,3 +448,43 @@ h1, .tool-title {
 .tw-btn:hover, .tw-save-btn:hover {
     background: #0ea5e9;
 }
+
+.legal-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: left;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    margin: 2rem 0;
+}
+
+.legal-container h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.legal-date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 1rem;
+}
+
+.legal-section {
+    margin-bottom: 1.75rem;
+}
+
+.legal-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+    color: #fff;
+}
+
+.legal-section p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}

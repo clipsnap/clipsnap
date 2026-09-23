@@ -33,6 +33,14 @@ def twitter_page():
 def contact_page():
     return render_template('contact.html')
 
+@app.route('/privacy')
+def privacy_page():
+    return render_template('privacy.html')
+
+@app.route('/terms')
+def terms_page():
+    return render_template('terms.html')
+
 @app.route('/get-video', methods=['POST'])
 def get_video():
     data = request.get_json() or {}
