@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- X / Twitter Targeted SEO -->
+    <title>X / Twitter Video Downloader — Save X Videos & GIFs in HD MP4 | ClipSnap</title>
+    <meta name="title" content="X / Twitter Video Downloader — Save X Videos & GIFs in HD MP4 | ClipSnap">
+    <meta name="description" content="Download Twitter videos and GIFs online in high quality 1080p MP4 for free. Fast X tweet video converter, no watermark, works on all devices.">
+    <meta name="keywords" content="twitter video downloader, x video download, download twitter gif, save tweet video mp4, clipsnap twitter">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://clipsnap.site/twitter">
+
+    <!-- Schema Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "ClipSnap X Twitter Downloader",
+          "url": "https://clipsnap.site/twitter",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How to download Twitter (X) videos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Copy the tweet or post link from X, paste it into ClipSnap, click Download, and save the MP4 video directly to your storage."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I save GIFs from X (Twitter)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, ClipSnap automatically converts and saves Twitter animated GIFs as clean, looping MP4 video files."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --accent: #10b981;
+            --bg-base: #0a0f1d;
+            --bg-card: #131b2e;
+            --bg-input: #1b2640;
+            --border-color: #243252;
+            --text-title: #f8fafc;
+            --text-body: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-base); color: var(--text-title); line-height: 1.6; }
+
+        header {
+            background-color: rgba(19, 27, 46, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1050px; margin: auto; padding: 14px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .brand-logo i { color: #3b82f6; font-size: 1.5rem; }
+        .nav-menu a { color: var(--text-body); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-left: 20px; }
+        .nav-menu a:hover { color: #fff; }
+
+        .hero-section { max-width: 780px; margin: 50px auto 40px; padding: 0 20px; text-align: center; }
+        .hero-badge {
+            display: inline-block; background: rgba(56, 189, 248, 0.12); color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.25); padding: 6px 16px; border-radius: 9999px;
+            font-size: 0.8rem; font-weight: 600; margin-bottom: 18px;
+        }
+
+        .hero-title {
+            font-size: 2.3rem; font-weight: 800; margin-bottom: 14px;
+            background: linear-gradient(135deg, #ffffff 40%, #38bdf8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc { color: var(--text-body); font-size: 1rem; margin-bottom: 35px; }
+
+        .download-box {
+            background-color: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 18px; padding: 26px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .input-bar { display: flex; gap: 10px; }
+        @media (max-width: 650px) { .input-bar { flex-direction: column; } .hero-title { font-size: 1.8rem; } .nav-menu { display: none; } }
+
+        .field-wrap { position: relative; flex: 1; }
+        .field-wrap i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-body); }
+
+        input[type="text"] {
+            width: 100%; padding: 16px 16px 16px 46px; background-color: var(--bg-input);
+            border: 1px solid var(--border-color); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;
+        }
+
+        input[type="text"]:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); }
+
+        .btn-fetch {
+            background-color: var(--primary); color: #0a0f1d; border: none; padding: 16px 30px;
+            border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-fetch:hover { background-color: var(--primary-hover); color: #fff; }
+
+        #loader { display: none; margin-top: 24px; color: #38bdf8; font-weight: 500; }
+        #resultArea { margin-top: 24px; }
+
+        .video-card { background: #0f1626; border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; text-align: left; }
+        .video-thumbnail { width: 100%; max-height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 14px; }
+        .video-name { font-size: 0.95rem; font-weight: 600; margin-bottom: 14px; color: #e2e8f0; }
+
+        .btn-download-mp4 {
+            display: block; background-color: var(--accent); color: #fff; text-align: center;
+            text-decoration: none; padding: 14px; border-radius: 8px; font-weight: 700;
+        }
+
+        .alert-error {
+            background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #f87171; padding: 14px; border-radius: 8px; font-size: 0.9rem;
+        }
+
+        .page-block { max-width: 950px; margin: 70px auto; padding: 0 20px; }
+        .block-header { text-align: center; margin-bottom: 40px; }
+        .block-header h2 { font-size: 1.7rem; font-weight: 800; margin-bottom: 8px; }
+        .block-header p { color: var(--text-body); font-size: 0.95rem; }
+
+        .step-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .step-box { background: var(--bg-card); border: 1px solid var(--border-color); padding: 26px 20px; border-radius: 14px; text-align: center; }
+        .step-counter { width: 40px; height: 40px; line-height: 40px; background: var(--primary); color: #0a0f1d; font-weight: 700; border-radius: 50%; margin: 0 auto 16px; }
+
+        .seo-content { background: var(--bg-card); border: 1px solid var(--border-color); padding: 30px; border-radius: 14px; color: var(--text-body); font-size: 0.94rem; margin-bottom: 40px; }
+        .seo-content h3 { color: #fff; font-size: 1.25rem; margin: 20px 0 10px; }
+        .seo-content h3:first-child { margin-top: 0; }
+
+        .faq-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px 24px; border-radius: 12px; margin-bottom: 14px; }
+        .faq-card h4 { font-size: 1.05rem; color: #fff; margin-bottom: 8px; }
+        .faq-card p { color: var(--text-body); font-size: 0.92rem; }
+
+        footer { border-top: 1px solid var(--border-color); padding: 40px 20px; text-align: center; color: var(--text-body); font-size: 0.85rem; margin-top: 80px; }
+        .footer-links { margin: 14px 0 18px; }
+        .footer-links a { color: var(--text-body); text-decoration: none; margin: 0 12px; }
+        .footer-links a:hover { color: #38bdf8; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="/" class="brand-logo">
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                ClipSnap
+            </a>
+            <nav class="nav-menu">
+                <a href="/">Home</a>
+                <a href="/instagram">Instagram</a>
+                <a href="/youtube">YouTube</a>
+                <a href="#how">How to Use</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <span class="hero-badge"><i class="fa-brands fa-x-twitter"></i> X / Twitter Tool</span>
+            <h1 class="hero-title">X (Twitter) Video Downloader</h1>
+            <p class="hero-desc">Save high quality videos and animated GIFs from X (Twitter) in original 1080p MP4 quality instantly.</p>
+
+            <div class="download-box">
+                <div class="input-bar">
+                    <div class="field-wrap">
+                        <i class="fa-solid fa-link"></i>
+                        <input type="text" id="videoUrl" placeholder="Paste X / Twitter post link..." autocomplete="off">
+                    </div>
+                    <button class="btn-fetch" onclick="fetchVideo()">
+                        <i class="fa-solid fa-arrow-down"></i> Download Video
+                    </button>
+                </div>
+
+                <div id="loader"><i class="fa-solid fa-circle-notch fa-spin"></i> Fetching X video stream...</div>
+                <div id="resultArea"></div>
+            </div>
+        </section>
+
+        <section class="page-block" id="how">
+            <div class="block-header">
+                <h2>How to Download X / Twitter Videos</h2>
+                <p>Save any video or GIF in three simple steps</p>
+            </div>
+            <div class="step-cards">
+                <div class="step-box">
+                    <div class="step-counter">1</div>
+                    <h3>Copy Post Link</h3>
+                    <p>Open X (Twitter), tap the Share icon under the tweet or video, and select 'Copy Link'.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-counter">2</div>
+                    <h3>Paste in ClipSnap</h3>
+                    <p>Paste the tweet URL into the input field above and click 'Download Video'.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-counter">3</div>
+                    <h3>Save MP4 File</h3>
+                    <p>Click 'Save Video' to download the media straight to your phone or computer storage.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-block" id="about">
+            <div class="block-header">
+                <h2>Fast & Secure X Video Converter</h2>
+                <p>Pure direct downloads without loss of quality</p>
+            </div>
+            <div class="seo-content">
+                <h3>Original High Bitrate Stream Extraction</h3>
+                <p>ClipSnap extracts the highest resolution video stream available directly from X servers, preserving clean sound and full 1080p HD visuals without compression artifacts.</p>
+
+                <h3>Full Animated GIF Support</h3>
+                <p>Twitter stores GIFs as looped video files. ClipSnap lets you download these GIFs formatted as universal MP4 videos ready to be shared directly on WhatsApp, Telegram, or Discord.</p>
+            </div>
+        </section>
+
+        <section class="page-block" id="faq">
+            <div class="block-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about Twitter downloads</p>
+            </div>
+            <div class="faq-card">
+                <h4>Can I download videos from private Twitter accounts?</h4>
+                <p>No, ClipSnap only works with tweets from public accounts to respect user privacy and security.</p>
+            </div>
+            <div class="faq-card">
+                <h4>Is ClipSnap free for unlimited Twitter downloads?</h4>
+                <p>Yes, you can download as many videos and GIFs as you want without registration or fees.</p>
+            </div>
+            <div class="faq-card">
+                <h4>Does the downloaded video contain any watermarks?</h4>
+                <p>No, videos saved through ClipSnap are original media files without watermarks or branding.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ClipSnap. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/instagram">Instagram</a>
+            <a href="/youtube">YouTube</a>
+            <a href="/twitter">Twitter</a>
+            <a href="/#contact">Contact Us</a>
+        </div>
+        <p style="font-size: 0.75rem; color: #64748b;">ClipSnap is not affiliated with X Corp or Twitter.</p>
+    </footer>
+
+    <script>
+    async function fetchVideo() {
+        const urlInput = document.getElementById('videoUrl');
+        const resultArea = document.getElementById('resultArea');
+        const loader = document.getElementById('loader');
+        const url = urlInput.value.trim();
+
+        resultArea.innerHTML = '';
+
+        if (!url) {
+            resultArea.innerHTML = '<div class="alert-error"><i class="fa-solid fa-circle-exclamation"></i> Please paste a Twitter / X link first.</div>';
+            return;
+        }
+
+        loader.style.display = 'block';
+
+        try {
+            const res = await fetch('/get-video', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: url })
+            });
+
+            const data = await res.json();
+            loader.style.display = 'none';
+
+            if (res.ok) {
+                const streamUrl = `/download-file?url=${encodeURIComponent(data.download_url)}`;
+                resultArea.innerHTML = `
+                    <div class="video-card">
+                        <img src="${data.thumbnail}" class="video-thumbnail" alt="Thumbnail">
+                        <div class="video-name">${data.title}</div>
+                        <a href="${streamUrl}" class="btn-download-mp4">
+                            <i class="fa-solid fa-download"></i> Save X Video (MP4)
+                        </a>
+                    </div>
+                `;
+            } else {
+                resultArea.innerHTML = `<div class="alert-error"><i class="fa-solid fa-circle-xmark"></i> ${data.error}</div>`;
+            }
+        } catch (err) {
+            loader.style.display = 'none';
+            resultArea.innerHTML = '<div class="alert-error"><i class="fa-solid fa-triangle-exclamation"></i> Failed to connect to server.</div>';
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,913 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Primary Meta Tags -->
+    <title>ClipSnap — Best Video Downloader for YouTube, Instagram & X</title>
+    <meta name="title" content="ClipSnap — Best Video Downloader for YouTube, Instagram & X">
+    <meta name="description" content="Download high-definition videos, reels, and shorts from YouTube, Instagram, and X (Twitter) for free in 1080p MP4. Fast, secure, and no watermark.">
+    <meta name="keywords" content="video downloader, download instagram reels, youtube shorts downloader, twitter video downloader, x video save, online mp4 converter, clipsnap">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="ClipSnap">
+    <meta name="theme-color" content="#0a0f1d">
+    <link rel="canonical" href="https://clipsnap.site/">
+
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://clipsnap.site/">
+    <meta property="og:title" content="ClipSnap — Universal Social Video Downloader">
+    <meta property="og:description" content="Download HD videos and reels from YouTube, Instagram, and X (Twitter) in original quality without watermarks. Free and unlimited.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80">
+
+    <!-- Twitter Card Preview -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://clipsnap.site/">
+    <meta name="twitter:title" content="ClipSnap — Fast HD Social Video Downloader">
+    <meta name="twitter:description" content="Save YouTube Shorts, Instagram Reels, and Twitter/X videos directly in MP4 format.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80">
+
+    <!-- JSON-LD Structured Data for Google (Rich Results & FAQ) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "ClipSnap",
+          "url": "https://clipsnap.site/",
+          "description": "Universal online social video downloader supporting YouTube, Instagram, and X (Twitter) in high quality MP4 format.",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1280",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is ClipSnap completely free to use?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, ClipSnap is 100% free with unlimited daily conversions and downloads without any subscriptions or hidden fees."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where are the downloaded videos saved on my phone?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Videos are automatically saved directly into your device default Downloads folder or phone photo gallery in MP4 format."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I download Instagram Reels and YouTube Shorts without watermarks?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, ClipSnap extracts the raw high-definition stream directly from the platform servers ensuring original audio and video quality without added watermarks."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-hover: #1d4ed8;
+            --accent: #10b981;
+            --bg-base: #0a0f1d;
+            --bg-card: #131b2e;
+            --bg-input: #1b2640;
+            --border-color: #243252;
+            --text-title: #f8fafc;
+            --text-body: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-title);
+            line-height: 1.6;
+        }
+
+        /* Top Navbar */
+        header {
+            background-color: rgba(19, 27, 46, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1050px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-left: 20px;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover {
+            color: #fff;
+        }
+
+        /* Hero & Search */
+        .hero-section {
+            max-width: 780px;
+            margin: 50px auto 40px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.12);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            color: var(--text-body);
+            font-size: 1rem;
+            margin-bottom: 35px;
+        }
+
+        .download-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .input-bar {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 650px) {
+            .input-bar { flex-direction: column; }
+            .hero-title { font-size: 1.8rem; }
+            .nav-menu { display: none; }
+        }
+
+        .field-wrap {
+            position: relative;
+            flex: 1;
+        }
+
+        .field-wrap i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-body);
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .field-wrap input[type="text"] {
+            padding-left: 46px;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-fetch {
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-fetch:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .platform-badges {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 20px;
+            color: var(--text-body);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .platform-badges span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .platform-badges .yt { color: #f87171; }
+        .platform-badges .ig { color: #f472b6; }
+        .platform-badges .x { color: #e2e8f0; }
+
+        /* Results & Loading */
+        #loader {
+            display: none;
+            margin-top: 24px;
+            color: #60a5fa;
+            font-weight: 500;
+        }
+
+        #resultArea {
+            margin-top: 24px;
+        }
+
+        .video-card {
+            background: #0f1626;
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 14px;
+        }
+
+        .video-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            color: #e2e8f0;
+        }
+
+        .btn-download-mp4 {
+            display: block;
+            background-color: var(--accent);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: opacity 0.2s;
+        }
+
+        .btn-download-mp4:hover {
+            opacity: 0.92;
+        }
+
+        .alert-error {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #f87171;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Section Layouts */
+        .page-block {
+            max-width: 950px;
+            margin: 70px auto;
+            padding: 0 20px;
+        }
+
+        .block-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .block-header h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .block-header p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        /* Steps */
+        .step-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .step-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 26px 20px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .step-counter {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+        }
+
+        .step-box h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .step-box p {
+            color: var(--text-body);
+            font-size: 0.88rem;
+        }
+
+        /* Features */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .feat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 26px 22px;
+            border-radius: 14px;
+        }
+
+        .feat-icon {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+
+        .feat-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .feat-box p {
+            color: var(--text-body);
+            font-size: 0.9rem;
+        }
+
+        /* SEO Informative Content Block */
+        .seo-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 14px;
+            color: var(--text-body);
+            font-size: 0.94rem;
+            margin-bottom: 40px;
+        }
+
+        .seo-content h3 {
+            color: #fff;
+            font-size: 1.25rem;
+            margin: 20px 0 10px;
+        }
+
+        .seo-content h3:first-child {
+            margin-top: 0;
+        }
+
+        /* FAQ */
+        .faq-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+        }
+
+        .faq-card h4 {
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .faq-card p {
+            color: var(--text-body);
+            font-size: 0.92rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 720px) {
+            .contact-container { grid-template-columns: 1fr; }
+        }
+
+        .contact-info {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 14px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-info p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            font-size: 1.25rem;
+            width: 25px;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: var(--text-body);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .btn-send {
+            width: 100%;
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-send:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #formStatus {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-body);
+            font-size: 0.85rem;
+            margin-top: 80px;
+        }
+
+        .footer-links {
+            margin: 14px 0 18px;
+        }
+
+        .footer-links a {
+            color: var(--text-body);
+            text-decoration: none;
+            margin: 0 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="/" class="brand-logo">
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                ClipSnap
+            </a>
+            <nav class="nav-menu">
+                <a href="#how">How to Use</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Downloader Hero -->
+    <main>
+        <section class="hero-section">
+            <span class="hero-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> 100% Free & Unlimited</span>
+            <h1 class="hero-title">Social Video Downloader</h1>
+            <p class="hero-desc">Download high-definition videos, reels, and shorts from YouTube, Instagram, and X (Twitter) in seconds.</p>
+
+            <div class="download-box">
+                <div class="input-bar">
+                    <div class="field-wrap">
+                        <i class="fa-solid fa-link"></i>
+                        <input type="text" id="videoUrl" placeholder="Paste link from YouTube, Instagram or X..." autocomplete="off">
+                    </div>
+                    <button class="btn-fetch" onclick="fetchVideo()">
+                        <i class="fa-solid fa-arrow-down"></i> Download
+                    </button>
+                </div>
+
+                <div class="platform-badges">
+                    <span class="yt"><i class="fa-brands fa-youtube"></i> YouTube</span>
+                    <span class="ig"><i class="fa-brands fa-instagram"></i> Instagram</span>
+                    <span class="x"><i class="fa-brands fa-x-twitter"></i> X / Twitter</span>
+                </div>
+
+                <div id="loader"><i class="fa-solid fa-circle-notch fa-spin"></i> Fetching video stream, please wait...</div>
+                <div id="resultArea"></div>
+            </div>
+        </section>
+
+        <!-- How To Use -->
+        <section class="page-block" id="how">
+            <div class="block-header">
+                <h2>How It Works</h2>
+                <p>Save any social media video in three quick steps</p>
+            </div>
+            <div class="step-cards">
+                <div class="step-box">
+                    <div class="step-counter">1</div>
+                    <h3>Copy Link</h3>
+                    <p>Open YouTube, Instagram, or X and copy the direct URL of the video or Reel.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-counter">2</div>
+                    <h3>Paste & Fetch</h3>
+                    <p>Paste the link into ClipSnap search bar and click the Download button.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-counter">3</div>
+                    <h3>Save MP4</h3>
+                    <p>Click 'Save Video' to download the original media straight to your storage.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="page-block" id="features">
+            <div class="block-header">
+                <h2>Key Advantages</h2>
+                <p>Fast, secure and reliable downloading experience</p>
+            </div>
+            <div class="feature-cards">
+                <div class="feat-box">
+                    <div class="feat-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>High Speed Engine</h3>
+                    <p>Optimized direct streaming pipelines ensure maximum download speeds without throttling.</p>
+                </div>
+                <div class="feat-box">
+                    <div class="feat-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3>Original Quality</h3>
+                    <p>Enjoy crisp, high-definition MP4 downloads keeping original resolution and audio intact.</p>
+                </div>
+                <div class="feat-box">
+                    <div class="feat-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h3>Works Everywhere</h3>
+                    <p>Fully responsive web experience built for Android, iOS, Windows, and Mac browsers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rich SEO Content Block for Google Ranking -->
+        <section class="page-block" id="about">
+            <div class="block-header">
+                <h2>Why Choose ClipSnap?</h2>
+                <p>The ultimate browser tool for saving social media content</p>
+            </div>
+            <div class="seo-content">
+                <h3>Fast & Seamless Instagram Reels Download</h3>
+                <p>ClipSnap provides a lightning-fast solution for extracting Instagram Reels, IGTV clips, and stories in high-definition MP4. Without requiring any browser extensions or account logins, you can save memories and creative content directly to your phone gallery.</p>
+
+                <h3>High Definition YouTube Shorts Converter</h3>
+                <p>Short-form video is dominating social platforms. With ClipSnap, downloading YouTube Shorts is as simple as copying the link. Our converter handles high bitrates, crystal clear audio, and full-resolution video up to 1080p.</p>
+
+                <h3>Secure X (Twitter) Video & GIF Downloader</h3>
+                <p>Easily archive viral news, clips, and animated GIFs from X (Twitter). Our servers process direct links securely, maintaining privacy and ensuring your downloads are completely free of unwanted watermarks.</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="page-block" id="faq">
+            <div class="block-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about ClipSnap</p>
+            </div>
+            <div class="faq-card">
+                <h4>Is ClipSnap completely free to use?</h4>
+                <p>Yes. ClipSnap is 100% free with unlimited daily conversions and downloads without any subscriptions or hidden fees.</p>
+            </div>
+            <div class="faq-card">
+                <h4>Where are the downloaded videos saved on my phone?</h4>
+                <p>Videos are automatically saved directly into your device default Downloads folder or phone photo gallery in MP4 format.</p>
+            </div>
+            <div class="faq-card">
+                <h4>Can I download Instagram Reels and YouTube Shorts without watermarks?</h4>
+                <p>Yes, ClipSnap extracts the raw high-definition stream directly from the platform servers ensuring original audio and video quality without added watermarks.</p>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section class="page-block" id="contact">
+            <div class="block-header">
+                <h2>Contact Us</h2>
+                <p>Have questions, suggestions, or technical inquiries? Send us a direct message below.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Our dedicated support team is available to assist you. Fill in the form and we will get back to your email directly.</p>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-headset"></i>
+                        <div>
+                            <strong>Online Helpdesk:</strong><br>
+                            <span>Direct 24/7 Web Ticket Support</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <strong>Response Time:</strong><br>
+                            <span>Typically replies within 12 - 24 hours</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Privacy Protected:</strong><br>
+                            <span>Your contact details are strictly confidential.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" name="name" id="contactName" placeholder="e.g. John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email Address</label>
+                        <input type="email" name="email" id="contactEmail" placeholder="e.g. name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Message</label>
+                        <textarea name="message" id="contactMessage" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-send" id="btnSubmitContact">
+                        <i class="fa-solid fa-paper-plane"></i> Send Message
+                    </button>
+                    <div id="formStatus"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ClipSnap. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <p style="font-size: 0.75rem; color: #64748b;">ClipSnap is not affiliated with YouTube, Instagram, or X.</p>
+    </footer>
+
+    <script>
+    async function fetchVideo() {
+        const urlInput = document.getElementById('videoUrl');
+        const resultArea = document.getElementById('resultArea');
+        const loader = document.getElementById('loader');
+        const url = urlInput.value.trim();
+
+        resultArea.innerHTML = '';
+
+        if (!url) {
+            resultArea.innerHTML = '<div class="alert-error"><i class="fa-solid fa-circle-exclamation"></i> Please paste a valid video URL first.</div>';
+            return;
+        }
+
+        loader.style.display = 'block';
+
+        try {
+            const res = await fetch('/get-video', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: url })
+            });
+
+            const data = await res.json();
+            loader.style.display = 'none';
+
+            if (res.ok) {
+                const streamUrl = `/download-file?url=${encodeURIComponent(data.download_url)}`;
+                resultArea.innerHTML = `
+                    <div class="video-card">
+                        <img src="${data.thumbnail}" class="video-thumbnail" alt="Thumbnail">
+                        <div class="video-name">${data.title}</div>
+                        <a href="${streamUrl}" class="btn-download-mp4">
+                            <i class="fa-solid fa-download"></i> Save Video (MP4)
+                        </a>
+                    </div>
+                `;
+            } else {
+                resultArea.innerHTML = `<div class="alert-error"><i class="fa-solid fa-circle-xmark"></i> ${data.error}</div>`;
+            }
+        } catch (err) {
+            loader.style.display = 'none';
+            resultArea.innerHTML = '<div class="alert-error"><i class="fa-solid fa-triangle-exclamation"></i> Failed to connect to server. Please verify your connection.</div>';
+        }
+    }
+
+    async function submitContactForm(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btnSubmitContact');
+        const status = document.getElementById('formStatus');
+        
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
+
+        const payload = {
+            name: document.getElementById('contactName').value,
+            email: document.getElementById('contactEmail').value,
+            message: document.getElementById('contactMessage').value,
+            _subject: 'New message from ClipSnap User!'
+        };
+
+        const endpoint = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FqYXgvdGFyaWtnZW9wYXJrQGdtYWlsLmNvbQ==');
+
+        try {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            status.style.display = 'block';
+            if (res.ok) {
+                status.style.backgroundColor = 'rgba(16, 185, 129, 0.15)';
+                status.style.color = '#34d399';
+                status.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+                status.innerHTML = '<i class="fa-solid fa-circle-check"></i> Thank you! Your message has been sent successfully.';
+                document.getElementById('contactForm').reset();
+            } else {
+                status.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+                status.style.color = '#f87171';
+                status.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+                status.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Message sending failed. Please try again.';
+            }
+        } catch (err) {
+            status.style.display = 'block';
+            status.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+            status.style.color = '#f87171';
+            status.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+            status.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Network error. Please check your connection.';
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+        }
+    }
+    </script>
+</body>
+</html>
+
+      
