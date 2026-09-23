@@ -267,3 +267,17 @@ h1, .tool-title {
 .fb-save-btn:hover {
     background: #166fe5;
 }
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .nav-links {
+        gap: 0.8rem;
+    }
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+}
