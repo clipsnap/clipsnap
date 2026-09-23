@@ -28,21 +28,22 @@ def extract_yt_id(url):
 
 def get_youtube_video(video_id):
     instances = [
-        'https://invidious.nerdvpn.de',
         'https://inv.nadeko.net',
-        'https://invidious.no-valis.space',
-        'https://yt.artemislena.eu'
+        'https://invidious.nerdvpn.de',
+        'https://invidious.jing.rocks',
+        'https://yt.drgnz.club'
     ]
     for base in instances:
         try:
-            res = requests.get(f"{base}/api/v1/videos/{video_id}", timeout=5)
+            res = requests.get(f"{base}/api/v1/videos/{video_id}", timeout=6)
             if res.status_code == 200:
                 data = res.json()
                 formats = data.get('formatStreams', [])
                 if formats:
+                    stream = formats[-1]
                     return {
                         'title': data.get('title', 'YouTube Video'),
-                        'download_url': formats[-1].get('url'),
+                        'download_url': stream.get('url'),
                         'thumbnail': f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
                     }
         except Exception:
@@ -62,6 +63,7 @@ def get_video():
             yt_res = get_youtube_video(vid)
             if yt_res:
                 return jsonify(yt_res)
+        return jsonify({'error': 'YouTube servers temporarily busy. Please retry.'}), 503
 
     ydl_opts = {
         'format': 'best[ext=mp4]/best',
