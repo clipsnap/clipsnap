@@ -8,31 +8,37 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/instagram')
-def instagram():
-    return render_template('instagram.html')
-
 @app.route('/youtube')
-def youtube():
+def youtube_page():
     return render_template('youtube.html')
 
+@app.route('/instagram')
+def instagram_page():
+    return render_template('instagram.html')
+
 @app.route('/twitter')
-def twitter():
+def twitter_page():
     return render_template('twitter.html')
 
 @app.route('/get-video', methods=['POST'])
 def get_video():
     data = request.get_json() or {}
-    url = data.get('url', '').strip()
-
+    url = data.get('url')
     if not url:
-        return jsonify({'error': 'Please provide a valid video link.'}), 400
+        return jsonify({'error': 'Please provide a valid URL.'}), 400
 
     ydl_opts = {
+        'format': 'best[ext=mp4]/best',
         'quiet': True,
         'no_warnings': True,
-        'extractor_args': {'youtube': {'player_client': ['android', 'web']}},
-        'user_agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36',
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'ios']
+            }
+        },
+        'http_headers': {
+            'User-Agent': 'com.google.android.youtube/19.05.36 (Linux; U; Android 14; US) gzip'
+        }
     }
 
     try:
@@ -40,15 +46,10 @@ def get_video():
             info = ydl.extract_info(url, download=False)
             video_url = None
             if 'formats' in info:
-                valid_formats = [f for f in info['formats'] if f.get('url') and f.get('vcodec') != 'none' and f.get('acodec') != 'none']
-                if valid_formats:
-                    video_url = valid_formats[-1]['url']
-                else:
-                    for f in reversed(info['formats']):
-                        if f.get('url') and f.get('vcodec') != 'none':
-                            video_url = f.get('url')
-                            break
-
+                for f in reversed(info['formats']):
+                    if f.get('ext') == 'mp4' and f.get('acodec') != 'none' and f.get('vcodec') != 'none':
+                        video_url = f.get('url')
+                        break
             if not video_url:
                 video_url = info.get('url')
 
@@ -58,6 +59,7 @@ def get_video():
                 'thumbnail': info.get('thumbnail', '')
             })
     except Exception as e:
+        print("yt-dlp error:", e)
         return jsonify({'error': 'Could not process this link.'}), 500
 
 @app.route('/download-file')
@@ -67,7 +69,7 @@ def download_file():
         return "Missing URL", 400
 
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         'Accept': '*/*',
         'Range': 'bytes=0-'
     }
