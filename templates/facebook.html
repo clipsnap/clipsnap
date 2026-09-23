@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClipSnap - Social Video Downloader</title>
+    <title>ClipSnap - Facebook Video & Reel Downloader</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,35 +14,29 @@
             <span>ClipSnap</span>
         </a>
         <nav class="nav-links">
-            <a href="/facebook"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="/facebook" class="active"><i class="fa-brands fa-facebook"></i> Facebook</a>
             <a href="/instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
             <a href="/twitter"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</a>
         </nav>
     </header>
 
     <main class="main-content">
-        <div class="badge">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> 100% Free & Unlimited
+        <div class="tool-badge fb-badge">
+            <i class="fa-brands fa-facebook"></i> Facebook Video Tool
         </div>
         
-        <h1>Social Video Downloader</h1>
-        <p class="subtitle">Download high-definition videos and reels from Facebook, Instagram, and X (Twitter) in seconds.</p>
+        <h1 class="tool-title">Facebook Video & Reel Downloader</h1>
+        <p class="tool-subtitle">Download high quality Facebook videos, reels, and watch clips in clear MP4 format.</p>
 
         <div class="downloader-card">
             <div class="input-wrapper">
                 <i class="fa-solid fa-link input-icon"></i>
-                <input type="text" id="videoUrl" placeholder="Paste link from Facebook, Instagram, or X..." autocomplete="off">
+                <input type="text" id="videoUrl" placeholder="Paste Facebook video or reel link here..." autocomplete="off">
             </div>
             
-            <button id="downloadBtn" class="download-btn" onclick="fetchVideo()">
-                <i class="fa-solid fa-arrow-down"></i> Download
+            <button id="downloadBtn" class="download-btn fb-btn" onclick="fetchVideo()">
+                <i class="fa-solid fa-arrow-down"></i> Download Video
             </button>
-
-            <div class="supported-icons">
-                <span><i class="fa-brands fa-facebook" style="color: #1877F2;"></i> Facebook</span>
-                <span><i class="fa-brands fa-instagram" style="color: #E1306C;"></i> Instagram</span>
-                <span><i class="fa-brands fa-x-twitter"></i> X / Twitter</span>
-            </div>
 
             <div id="errorMsg" class="error-box" style="display: none;">
                 <i class="fa-solid fa-circle-xmark"></i>
@@ -53,7 +47,7 @@
                 <img id="thumbImg" src="" alt="Thumbnail" class="result-thumb">
                 <div class="result-info">
                     <h3 id="videoTitle"></h3>
-                    <a id="saveBtn" href="" class="save-file-btn">
+                    <a id="saveBtn" href="" class="save-file-btn fb-save-btn">
                         <i class="fa-solid fa-download"></i> Save MP4 File
                     </a>
                 </div>

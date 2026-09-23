@@ -8,9 +8,9 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/youtube')
-def youtube_page():
-    return render_template('youtube.html')
+@app.route('/facebook')
+def facebook_page():
+    return render_template('facebook.html')
 
 @app.route('/instagram')
 def instagram_page():
@@ -27,20 +27,11 @@ def get_video():
     if not url:
         return jsonify({'error': 'Please provide a valid URL.'}), 400
 
-    # الإعدادات النظيفة الأصلية اللي كانت خادمة لإنستغرام وتويتر
     ydl_opts = {
         'format': 'best[ext=mp4]/best',
         'quiet': True,
         'no_warnings': True,
     }
-
-    # تخصيص خاص فقط بيوتيوب بلا ما يقيس المنصات الأخرى
-    if 'youtube.com' in url or 'youtu.be' in url:
-        ydl_opts['extractor_args'] = {
-            'youtube': {
-                'player_client': ['android', 'web']
-            }
-        }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
