@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClipSnap - Facebook Video & Reel Downloader</title>
+    <meta name="description" content="Download high quality Facebook videos, reels, and watch clips in clear 1080p MP4 format for free.">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -17,6 +18,7 @@
             <a href="/facebook" class="active"><i class="fa-brands fa-facebook"></i> Facebook</a>
             <a href="/instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
             <a href="/twitter"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</a>
+            <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
         </nav>
     </header>
 
@@ -53,7 +55,76 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-section">
+            <h2>How to Download Facebook Videos & Reels</h2>
+            <p class="section-sub">Save any Facebook public video in three simple steps</p>
+
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-num fb-num">1</div>
+                    <h3>Copy Video Link</h3>
+                    <p>Open Facebook, tap the Share icon under the video or reel, and choose Copy Link.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num fb-num">2</div>
+                    <h3>Paste in ClipSnap</h3>
+                    <p>Paste the copied Facebook link into the input box above and click Download Video.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num fb-num">3</div>
+                    <h3>Save MP4 File</h3>
+                    <p>Click Save MP4 File to download the video directly to your gallery or storage.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3.5rem;">Fast & Secure Facebook Downloader</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fa-solid fa-bolt" style="color: #1877F2;"></i>
+                    <h3>High Quality 1080p & HD</h3>
+                    <p>Download Facebook public videos in original high-definition resolution with sound.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-shield-halved" style="color: #1877F2;"></i>
+                    <h3>No Login Required</h3>
+                    <p>Completely safe and private. You never need to enter your Facebook credentials.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-infinity" style="color: #1877F2;"></i>
+                    <h3>Unlimited Free Use</h3>
+                    <p>Download as many Facebook videos, reels, and watch clips as you want without limits.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3.5rem;">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-card">
+                    <h4>Can I download private Facebook videos?</h4>
+                    <p>No, ClipSnap only supports public videos and reels to protect user privacy.</p>
+                </div>
+                <div class="faq-card">
+                    <h4>Is ClipSnap free for Facebook downloads?</h4>
+                    <p>Yes, all downloads are 100% free with no registration or hidden fees.</p>
+                </div>
+                <div class="faq-card">
+                    <h4>Does the downloaded video have watermarks?</h4>
+                    <p>No, videos saved through ClipSnap are clean and contain no added watermarks.</p>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/facebook">Facebook Downloader</a>
+            <a href="/instagram">Instagram Downloader</a>
+            <a href="/twitter">Twitter Downloader</a>
+            <a href="/contact">Contact Us</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 ClipSnap. All rights reserved.</p>
+    </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
