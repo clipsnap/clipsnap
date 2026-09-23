@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://clipsnap-1.onrender.com/sitemap.xml
