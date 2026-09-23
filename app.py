@@ -21,11 +21,52 @@ def instagram_page():
 def twitter_page():
     return render_template('twitter.html')
 
-def sanitize_url(url):
+def extract_yt_id(url):
     m = re.search(r'(?:v=|\/shorts\/|youtu\.be\/)([a-zA-Z0-9_-]{11})', url)
-    if m:
-        return f"https://www.youtube.com/watch?v={m.group(1)}"
-    return url
+    return m.group(1) if m else None
+
+def get_direct_yt_stream(video_id):
+    # Public fast resolver gateway
+    apis = [
+        f"https://co.wuk.sh/api/json",
+        f"https://api.cobalt.tools/api/json"
+    ]
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0'
+    }
+    target_url = f"https://www.youtube.com/watch?v={video_id}"
+
+    for api in apis:
+        try:
+            r = requests.post(api, json={'url': target_url}, headers=headers, timeout=8)
+            if r.status_code == 200:
+                res = r.json()
+                if res.get('url'):
+                    return {
+                        'title': 'YouTube Video',
+                        'download_url': res.get('url'),
+                        'thumbnail': f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
+                    }
+        except Exception:
+            continue
+
+    # Fallback to direct mp4 link resolver
+    try:
+        r2 = requests.get(f"https://y-api.org/api/v1/info/{video_id}", timeout=8)
+        if r2.status_code == 200:
+            res2 = r2.json()
+            if res2.get('download_url'):
+                return {
+                    'title': res2.get('title', 'YouTube Video'),
+                    'download_url': res2.get('download_url'),
+                    'thumbnail': f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
+                }
+    except Exception:
+        pass
+
+    return None
 
 @app.route('/get-video', methods=['POST'])
 def get_video():
@@ -34,22 +75,25 @@ def get_video():
     if not url:
         return jsonify({'error': 'Please provide a valid URL.'}), 400
 
-    clean_url = sanitize_url(url)
+    # Handle YouTube separately to avoid bot block
+    if 'youtube.com' in url or 'youtu.be' in url:
+        vid = extract_yt_id(url)
+        if vid:
+            yt_data = get_direct_yt_stream(vid)
+            if yt_data:
+                return jsonify(yt_data)
+        return jsonify({'error': 'Could not process this YouTube link. Please try another.'}), 500
 
+    # Keep yt-dlp for Instagram and Twitter (Working)
     ydl_opts = {
         'format': 'best[ext=mp4]/best',
         'quiet': True,
         'no_warnings': True,
-        'extractor_args': {
-            'youtube': {
-                'player_client': ['android', 'web_embedded']
-            }
-        }
     }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(clean_url, download=False)
+            info = ydl.extract_info(url, download=False)
             video_url = None
             if 'formats' in info:
                 for f in reversed(info['formats']):
@@ -60,7 +104,7 @@ def get_video():
                 video_url = info.get('url')
 
             return jsonify({
-                'title': info.get('title', 'Video Download'),
+                'title': info.get('title', 'Social Video'),
                 'download_url': video_url,
                 'thumbnail': info.get('thumbnail', '')
             })
