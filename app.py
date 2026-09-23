@@ -20,6 +20,21 @@ def instagram_page():
 def twitter_page():
     return render_template('twitter.html')
 
+def get_yt_link(url):
+    try:
+        r = requests.post(
+            'https://api.cobalt.tools/api/json',
+            headers={'Accept': 'application/json', 'Content-Type': 'application/json'},
+            json={'url': url},
+            timeout=15
+        )
+        res = r.json()
+        if res.get('url'):
+            return {'title': 'YouTube Video', 'download_url': res.get('url'), 'thumbnail': ''}
+    except Exception:
+        pass
+    return None
+
 @app.route('/get-video', methods=['POST'])
 def get_video():
     data = request.get_json() or {}
@@ -27,13 +42,18 @@ def get_video():
     if not url:
         return jsonify({'error': 'Please provide a valid URL.'}), 400
 
+    if 'youtube.com' in url or 'youtu.be' in url:
+        yt = get_yt_link(url)
+        if yt:
+            return jsonify(yt)
+
     ydl_opts = {
         'format': 'best[ext=mp4]/best',
         'quiet': True,
         'no_warnings': True,
         'extractor_args': {
             'youtube': {
-                'player_client': ['tv_embedded', 'mweb', 'ios']
+                'player_client': ['tv_embedded', 'ios', 'mweb']
             }
         }
     }
@@ -56,7 +76,7 @@ def get_video():
                 'thumbnail': info.get('thumbnail', '')
             })
     except Exception as e:
-        print("yt-dlp error:", e)
+        print("Error:", e)
         return jsonify({'error': 'Could not process this link.'}), 500
 
 @app.route('/download-file')
@@ -65,19 +85,7 @@ def download_file():
     if not video_url:
         return "Missing URL", 400
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Accept': '*/*',
-        'Range': 'bytes=0-'
-    }
-
-    if 'tiktok' in video_url or 'byteoversea' in video_url:
-        headers['Referer'] = 'https://www.tiktok.com/'
-    elif 'instagram' in video_url or 'cdninstagram' in video_url or 'fbcdn' in video_url:
-        headers['Referer'] = 'https://www.instagram.com/'
-    elif 'googlevideo' in video_url or 'youtube' in video_url:
-        headers['Referer'] = 'https://www.youtube.com/'
-
+    headers = {'User-Agent': 'Mozilla/5.0'}
     try:
         req = requests.get(video_url, headers=headers, stream=True, timeout=30)
         return Response(
