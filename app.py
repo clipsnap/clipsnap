@@ -20,6 +20,10 @@ def instagram_page():
 def twitter_page():
     return render_template('twitter.html')
 
+@app.route('/contact')
+def contact_page():
+    return render_template('contact.html')
+
 @app.route('/get-video', methods=['POST'])
 def get_video():
     data = request.get_json() or {}

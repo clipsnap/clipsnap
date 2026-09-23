@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClipSnap - Social Video Downloader</title>
+    <title>ClipSnap - Best Free Social Video Downloader (Facebook, Instagram, X)</title>
+    <meta name="description" content="Download high definition videos and reels from Facebook, Instagram, and X (Twitter) for free in seconds. No registration required.">
+    <meta name="keywords" content="video downloader, facebook reels downloader, instagram video download, download twitter video, clipsnap, free mp4 downloader">
+    <meta property="og:title" content="ClipSnap - Fast Free Video Downloader">
+    <meta property="og:description" content="Download videos and reels in high quality MP4 format online.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -17,6 +22,7 @@
             <a href="/facebook"><i class="fa-brands fa-facebook"></i> Facebook</a>
             <a href="/instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
             <a href="/twitter"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</a>
+            <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
         </nav>
     </header>
 
@@ -59,7 +65,39 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-section">
+            <h2>Why Choose ClipSnap?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3>Ultra Fast Downloads</h3>
+                    <p>Direct high-speed stream servers to download your favorite media instantly.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>100% Secure & Private</h3>
+                    <p>No registration, no cookies required, and completely anonymous.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-film"></i>
+                    <h3>High Quality MP4</h3>
+                    <p>Get original quality videos with crystal clear sound and full HD resolution.</p>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/facebook">Facebook Downloader</a>
+            <a href="/instagram">Instagram Downloader</a>
+            <a href="/twitter">Twitter Downloader</a>
+            <a href="/contact">Contact Us</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 ClipSnap. Fast & Secure Social Media Video Downloader.</p>
+    </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
