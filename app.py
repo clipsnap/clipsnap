@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify, Response
 import yt_dlp
 import requests
-import re
 
 app = Flask(__name__)
 
@@ -21,12 +20,6 @@ def instagram_page():
 def twitter_page():
     return render_template('twitter.html')
 
-def sanitize_url(url):
-    m = re.search(r'(?:v=|\/shorts\/|youtu\.be\/)([a-zA-Z0-9_-]{11})', url)
-    if m:
-        return f"https://www.youtube.com/watch?v={m.group(1)}"
-    return url
-
 @app.route('/get-video', methods=['POST'])
 def get_video():
     data = request.get_json() or {}
@@ -34,27 +27,24 @@ def get_video():
     if not url:
         return jsonify({'error': 'Please provide a valid URL.'}), 400
 
-    clean_url = sanitize_url(url)
-
+    # الإعدادات النظيفة الأصلية اللي كانت خادمة لإنستغرام وتويتر
     ydl_opts = {
         'format': 'best[ext=mp4]/best',
         'quiet': True,
         'no_warnings': True,
-        'http_headers': {
-            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1',
-            'Accept-Language': 'en-US,en;q=0.9',
-        },
-        'extractor_args': {
+    }
+
+    # تخصيص خاص فقط بيوتيوب بلا ما يقيس المنصات الأخرى
+    if 'youtube.com' in url or 'youtu.be' in url:
+        ydl_opts['extractor_args'] = {
             'youtube': {
-                'player_client': ['ios', 'mweb'],
-                'player_skip': ['webpage', 'configs']
+                'player_client': ['android', 'web']
             }
         }
-    }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(clean_url, download=False)
+            info = ydl.extract_info(url, download=False)
             video_url = None
             if 'formats' in info:
                 for f in reversed(info['formats']):
@@ -65,7 +55,7 @@ def get_video():
                 video_url = info.get('url')
 
             return jsonify({
-                'title': info.get('title', 'Video Download'),
+                'title': info.get('title', 'Social Video'),
                 'download_url': video_url,
                 'thumbnail': info.get('thumbnail', '')
             })
@@ -79,7 +69,7 @@ def download_file():
     if not video_url:
         return "Missing URL", 400
 
-    headers = {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X)'}
+    headers = {'User-Agent': 'Mozilla/5.0'}
     try:
         req = requests.get(video_url, headers=headers, stream=True, timeout=30)
         return Response(
