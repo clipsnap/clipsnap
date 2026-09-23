@@ -33,11 +33,8 @@ def get_video():
         'no_warnings': True,
         'extractor_args': {
             'youtube': {
-                'player_client': ['android', 'ios']
+                'player_client': ['tv_embedded', 'mweb', 'ios']
             }
-        },
-        'http_headers': {
-            'User-Agent': 'com.google.android.youtube/19.05.36 (Linux; U; Android 14; US) gzip'
         }
     }
 
