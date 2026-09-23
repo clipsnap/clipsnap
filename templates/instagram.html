@@ -3,324 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Instagram Targeted SEO -->
-    <title>Instagram Reels Downloader — Save Insta Videos in HD MP4 | ClipSnap</title>
-    <meta name="title" content="Instagram Reels Downloader — Save Insta Videos in HD MP4 | ClipSnap">
-    <meta name="description" content="Download Instagram Reels, videos, stories, and IGTV clips in full HD MP4 for free. No watermark, high speed, and works directly in your browser.">
-    <meta name="keywords" content="instagram reels downloader, save insta video, download instagram story, ig reel to mp4, instagram video download online">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://clipsnap.site/instagram">
-
-    <!-- Schema Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "name": "ClipSnap Instagram Downloader",
-          "url": "https://clipsnap.site/instagram",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "All",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "How to download Instagram Reels using ClipSnap?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Copy the reel link from Instagram app, paste it into ClipSnap input box, tap Download, and save the original HD MP4 video."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I need to log into my Instagram account?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. ClipSnap works completely anonymously without requiring your Instagram credentials or account permissions."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-
+    <title>Instagram Reels Downloader - ClipSnap</title>
+    <meta name="description" content="Download Instagram Reels, Feed Videos, and IGTV directly in 1080p Full HD MP4 without watermarks.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #ec4899;
-            --primary-hover: #db2777;
-            --accent: #10b981;
-            --bg-base: #0a0f1d;
-            --bg-card: #131b2e;
-            --bg-input: #1b2640;
-            --border-color: #243252;
-            --text-title: #f8fafc;
-            --text-body: #94a3b8;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-base); color: var(--text-title); line-height: 1.6; }
-
-        header {
-            background-color: rgba(19, 27, 46, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky; top: 0; z-index: 50;
-        }
-
-        .nav-container {
-            max-width: 1050px; margin: auto; padding: 14px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .brand-logo {
-            font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none;
-            display: flex; align-items: center; gap: 10px;
-        }
-
-        .brand-logo i { color: #3b82f6; font-size: 1.5rem; }
-        .nav-menu a { color: var(--text-body); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-left: 20px; }
-        .nav-menu a:hover { color: #fff; }
-
-        .hero-section { max-width: 780px; margin: 50px auto 40px; padding: 0 20px; text-align: center; }
-        .hero-badge {
-            display: inline-block; background: rgba(236, 72, 153, 0.12); color: #f472b6;
-            border: 1px solid rgba(236, 72, 153, 0.25); padding: 6px 16px; border-radius: 9999px;
-            font-size: 0.8rem; font-weight: 600; margin-bottom: 18px;
-        }
-
-        .hero-title {
-            font-size: 2.3rem; font-weight: 800; margin-bottom: 14px;
-            background: linear-gradient(135deg, #ffffff 40%, #f472b6 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc { color: var(--text-body); font-size: 1rem; margin-bottom: 35px; }
-
-        .download-box {
-            background-color: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 18px; padding: 26px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-        }
-
-        .input-bar { display: flex; gap: 10px; }
-        @media (max-width: 650px) { .input-bar { flex-direction: column; } .hero-title { font-size: 1.8rem; } .nav-menu { display: none; } }
-
-        .field-wrap { position: relative; flex: 1; }
-        .field-wrap i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-body); }
-
-        input[type="text"] {
-            width: 100%; padding: 16px 16px 16px 46px; background-color: var(--bg-input);
-            border: 1px solid var(--border-color); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;
-        }
-
-        input[type="text"]:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2); }
-
-        .btn-fetch {
-            background-color: var(--primary); color: #fff; border: none; padding: 16px 30px;
-            border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .btn-fetch:hover { background-color: var(--primary-hover); }
-
-        #loader { display: none; margin-top: 24px; color: #f472b6; font-weight: 500; }
-        #resultArea { margin-top: 24px; }
-
-        .video-card { background: #0f1626; border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; text-align: left; }
-        .video-thumbnail { width: 100%; max-height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 14px; }
-        .video-name { font-size: 0.95rem; font-weight: 600; margin-bottom: 14px; color: #e2e8f0; }
-
-        .btn-download-mp4 {
-            display: block; background-color: var(--accent); color: #fff; text-align: center;
-            text-decoration: none; padding: 14px; border-radius: 8px; font-weight: 700;
-        }
-
-        .alert-error {
-            background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25);
-            color: #f87171; padding: 14px; border-radius: 8px; font-size: 0.9rem;
-        }
-
-        .page-block { max-width: 950px; margin: 70px auto; padding: 0 20px; }
-        .block-header { text-align: center; margin-bottom: 40px; }
-        .block-header h2 { font-size: 1.7rem; font-weight: 800; margin-bottom: 8px; }
-        .block-header p { color: var(--text-body); font-size: 0.95rem; }
-
-        .step-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-        .step-box { background: var(--bg-card); border: 1px solid var(--border-color); padding: 26px 20px; border-radius: 14px; text-align: center; }
-        .step-counter { width: 40px; height: 40px; line-height: 40px; background: var(--primary); color: #fff; font-weight: 700; border-radius: 50%; margin: 0 auto 16px; }
-
-        .seo-content { background: var(--bg-card); border: 1px solid var(--border-color); padding: 30px; border-radius: 14px; color: var(--text-body); font-size: 0.94rem; margin-bottom: 40px; }
-        .seo-content h3 { color: #fff; font-size: 1.25rem; margin: 20px 0 10px; }
-        .seo-content h3:first-child { margin-top: 0; }
-
-        .faq-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px 24px; border-radius: 12px; margin-bottom: 14px; }
-        .faq-card h4 { font-size: 1.05rem; color: #fff; margin-bottom: 8px; }
-        .faq-card p { color: var(--text-body); font-size: 0.92rem; }
-
-        footer { border-top: 1px solid var(--border-color); padding: 40px 20px; text-align: center; color: var(--text-body); font-size: 0.85rem; margin-top: 80px; }
-        .footer-links { margin: 14px 0 18px; }
-        .footer-links a { color: var(--text-body); text-decoration: none; margin: 0 12px; }
-        .footer-links a:hover { color: #3b82f6; }
-    </style>
 </head>
 <body>
-
-    <header>
-        <div class="nav-container">
-            <a href="/" class="brand-logo">
-                <i class="fa-solid fa-cloud-arrow-down"></i>
-                ClipSnap
-            </a>
-            <nav class="nav-menu">
-                <a href="/">Home</a>
-                <a href="#how">How to Use</a>
-                <a href="#about">About</a>
-                <a href="#faq">FAQ</a>
-            </nav>
-        </div>
+    <header class="navbar">
+        <a href="/" class="logo">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <span>ClipSnap</span>
+        </a>
+        <nav class="nav-links">
+            <a href="/facebook"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="/instagram" class="active"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="/twitter"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</a>
+            <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero-section">
-            <span class="hero-badge"><i class="fa-brands fa-instagram"></i> Instagram Video Tool</span>
-            <h1 class="hero-title">Instagram Reels Downloader</h1>
-            <p class="hero-desc">Download Instagram Reels, Feed Videos, and IGTV directly in 1080p Full HD MP4 without watermarks.</p>
+    <main class="main-content">
+        <div class="tool-badge insta-badge">
+            <i class="fa-brands fa-instagram"></i> Instagram Video Tool
+        </div>
+        
+        <h1 class="tool-title">Instagram Reels Downloader</h1>
+        <p class="tool-subtitle">Download Instagram Reels, Feed Videos, and IGTV directly in 1080p Full HD MP4 without watermarks.</p>
 
-            <div class="download-box">
-                <div class="input-bar">
-                    <div class="field-wrap">
-                        <i class="fa-solid fa-link"></i>
-                        <input type="text" id="videoUrl" placeholder="Paste Instagram Reel or Post link..." autocomplete="off">
-                    </div>
-                    <button class="btn-fetch" onclick="fetchVideo()">
-                        <i class="fa-solid fa-arrow-down"></i> Download Reel
-                    </button>
+        <div class="downloader-card">
+            <div class="input-wrapper">
+                <i class="fa-solid fa-link input-icon"></i>
+                <input type="text" id="videoUrl" placeholder="Paste Instagram Reel or Post link here..." autocomplete="off">
+            </div>
+            
+            <button id="downloadBtn" class="download-btn insta-btn" onclick="fetchVideo()">
+                <i class="fa-solid fa-arrow-down"></i> Download Reel
+            </button>
+
+            <div id="errorMsg" class="error-box" style="display: none;">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span id="errorText"></span>
+            </div>
+
+            <div id="videoResult" class="result-box" style="display: none;">
+                <img id="thumbImg" src="" alt="Thumbnail" class="result-thumb">
+                <div class="result-info">
+                    <h3 id="videoTitle"></h3>
+                    <a id="saveBtn" href="" class="save-file-btn insta-save-btn">
+                        <i class="fa-solid fa-download"></i> Save Original MP4
+                    </a>
                 </div>
-
-                <div id="loader"><i class="fa-solid fa-circle-notch fa-spin"></i> Fetching Instagram video...</div>
-                <div id="resultArea"></div>
             </div>
-        </section>
+        </div>
 
-        <section class="page-block" id="how">
-            <div class="block-header">
-                <h2>How to Download Instagram Reels</h2>
-                <p>Save any public reel or video in three simple steps</p>
-            </div>
-            <div class="step-cards">
-                <div class="step-box">
-                    <div class="step-counter">1</div>
+        <section class="seo-section">
+            <h2>How to Download Instagram Reels</h2>
+            <p class="section-sub">Save any public reel or video in three simple steps</p>
+
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-num insta-num">1</div>
                     <h3>Copy Reel URL</h3>
-                    <p>Open Instagram, click the three dots (...) or Share icon on the Reel, and tap 'Copy Link'.</p>
+                    <p>Open Instagram, click the three dots (...) or Share icon on the Reel, and tap Copy Link.</p>
                 </div>
-                <div class="step-box">
-                    <div class="step-counter">2</div>
+                <div class="step-card">
+                    <div class="step-num insta-num">2</div>
                     <h3>Paste in ClipSnap</h3>
-                    <p>Paste the copied URL into the search box above and press 'Download Reel'.</p>
+                    <p>Paste the copied URL into the search box above and press Download Reel.</p>
                 </div>
-                <div class="step-box">
-                    <div class="step-counter">3</div>
+                <div class="step-card">
+                    <div class="step-num insta-num">3</div>
                     <h3>Save Original MP4</h3>
-                    <p>Click 'Save Video' to download the Reel straight to your gallery with original audio.</p>
+                    <p>Click Save Video to download the reel straight to your gallery with original audio.</p>
                 </div>
             </div>
-        </section>
 
-        <section class="page-block" id="about">
-            <div class="block-header">
-                <h2>The Best Free Instagram Downloader</h2>
-                <p>Designed for speed, clarity, and ease of use</p>
+            <h2 style="margin-top: 3.5rem;">The Best Free Instagram Downloader</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: #E1306C;"></i>
+                    <h3>Original 1080p Video & Audio Preservation</h3>
+                    <p>ClipSnap extracts the highest resolution stream available directly from Instagram servers.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-user-shield" style="color: #E1306C;"></i>
+                    <h3>No Login or App Installation Required</h3>
+                    <p>Your privacy is strictly respected. You never need to enter your Instagram password.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-bolt" style="color: #E1306C;"></i>
+                    <h3>Lightning Fast Processing</h3>
+                    <p>High bitrate video streams without compression artifacts, delivered in seconds.</p>
+                </div>
             </div>
-            <div class="seo-content">
-                <h3>Original 1080p Video & Audio Preservation</h3>
-                <p>ClipSnap connects directly with Instagram media pipelines to extract the raw mp4 file. Unlike screen-recording apps, our converter keeps crisp 1080p resolution and uncompressed audio.</p>
 
-                <h3>No Login or App Installation Required</h3>
-                <p>Your privacy is strictly respected. You never need to enter your Instagram password or install suspicious third-party APKs or browser add-ons. Everything happens instantly inside your standard mobile browser.</p>
-            </div>
-        </section>
-
-        <section class="page-block" id="faq">
-            <div class="block-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>Everything you need to know about Instagram downloads</p>
-            </div>
-            <div class="faq-card">
-                <h4>Can I download videos from private Instagram accounts?</h4>
-                <p>No, ClipSnap strictly supports public Instagram accounts to protect user privacy and respect platform policies.</p>
-            </div>
-            <div class="faq-card">
-                <h4>Does the downloaded video have a watermark?</h4>
-                <p>No, videos downloaded via ClipSnap are 100% clean and free of watermarks or logos.</p>
-            </div>
-            <div class="faq-card">
-                <h4>Where are Instagram videos saved on Android/iPhone?</h4>
-                <p>Files are saved into your phone's default Downloads directory and will automatically show up in your Photos or Gallery app.</p>
+            <h2 style="margin-top: 3.5rem;">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-card">
+                    <h4>Can I download videos from private Instagram accounts?</h4>
+                    <p>No, ClipSnap strictly respects public Instagram accounts to protect user privacy and respect platform policies.</p>
+                </div>
+                <div class="faq-card">
+                    <h4>Does the downloaded video have a watermark?</h4>
+                    <p>No, online downloaded via ClipSnap are 100% clean and free of watermarks or logos.</p>
+                </div>
+                <div class="faq-card">
+                    <h4>Where are Instagram videos saved on Android/iPhone?</h4>
+                    <p>Files are saved into your phone's default Downloads directory and will automatically show up in your gallery.</p>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 ClipSnap. All rights reserved.</p>
+    <footer class="footer">
         <div class="footer-links">
             <a href="/">Home</a>
+            <a href="/facebook">Facebook Downloader</a>
             <a href="/instagram">Instagram Downloader</a>
-            <a href="/#contact">Contact Us</a>
+            <a href="/twitter">Twitter Downloader</a>
+            <a href="/contact">Contact Us</a>
         </div>
-        <p style="font-size: 0.75rem; color: #64748b;">ClipSnap is not affiliated with Instagram or Meta.</p>
+        <p class="footer-copy">&copy; 2026 ClipSnap. All rights reserved.</p>
     </footer>
 
-    <script>
-    async function fetchVideo() {
-        const urlInput = document.getElementById('videoUrl');
-        const resultArea = document.getElementById('resultArea');
-        const loader = document.getElementById('loader');
-        const url = urlInput.value.trim();
-
-        resultArea.innerHTML = '';
-
-        if (!url) {
-            resultArea.innerHTML = '<div class="alert-error"><i class="fa-solid fa-circle-exclamation"></i> Please paste an Instagram link first.</div>';
-            return;
-        }
-
-        loader.style.display = 'block';
-
-        try {
-            const res = await fetch('/get-video', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: url })
-            });
-
-            const data = await res.json();
-            loader.style.display = 'none';
-
-            if (res.ok) {
-                const streamUrl = `/download-file?url=${encodeURIComponent(data.download_url)}`;
-                resultArea.innerHTML = `
-                    <div class="video-card">
-                        <img src="${data.thumbnail}" class="video-thumbnail" alt="Thumbnail">
-                        <div class="video-name">${data.title}</div>
-                        <a href="${streamUrl}" class="btn-download-mp4">
-                            <i class="fa-solid fa-download"></i> Save Instagram Video (MP4)
-                        </a>
-                    </div>
-                `;
-            } else {
-                resultArea.innerHTML = `<div class="alert-error"><i class="fa-solid fa-circle-xmark"></i> ${data.error}</div>`;
-            }
-        } catch (err) {
-            loader.style.display = 'none';
-            resultArea.innerHTML = '<div class="alert-error"><i class="fa-solid fa-triangle-exclamation"></i> Failed to connect to server.</div>';
-        }
-    }
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

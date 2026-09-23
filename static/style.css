@@ -420,3 +420,31 @@ h1, .tool-title {
     color: var(--text-muted);
     font-size: 0.9rem;
 }
+
+.insta-badge {
+    background: rgba(225, 48, 108, 0.1);
+    color: #E1306C;
+    border-color: rgba(225, 48, 108, 0.3);
+}
+
+.insta-btn, .insta-num, .insta-save-btn {
+    background: #E1306C;
+}
+
+.insta-btn:hover, .insta-save-btn:hover {
+    background: #c1275d;
+}
+
+.tw-badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.tw-btn, .tw-num, .tw-save-btn {
+    background: #38bdf8;
+}
+
+.tw-btn:hover, .tw-save-btn:hover {
+    background: #0ea5e9;
+}
