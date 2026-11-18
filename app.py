@@ -1,3 +1,9 @@
+@app.route('/how-to-download-instagram-video.html')
+def instagram_guide():
+    return render_template('instagram_guide.html')
+@app.route('/how-to-download-instagram-video.html')
+def instagram_guide():
+    return render_template('instagram_guide.html')
 from flask import Flask, render_template, request, jsonify, Response, send_from_directory
 import yt_dlp
 import requests
@@ -91,6 +97,9 @@ def download_file():
         )
     except Exception as err:
         return f"Stream error: {str(err)}", 500
+@app.route('/how-to-download-instagram-video.html')
+def instagram_guide():
+    return render_template('instagram_guide.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
